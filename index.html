@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coconut Breaker Game 🥥🔨</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Floating background particles -->
+  <div class="tropical-bg">
+    <div class="sun"></div>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="palm palm-left">🌴</div>
+    <div class="palm palm-right">🌴</div>
+  </div>
+
+  <main class="game-container">
+    <header class="game-header">
+      <h1 class="game-title">🥥 COCONUT BREAKER</h1>
+      <p class="subtitle">Click/Tap repeatedly to smash the coconut before the timer runs out!</p>
+    </header>
+
+    <!-- Stats HUD -->
+    <section class="stats-card">
+      <div class="stat-box">
+        <span class="stat-label">Score</span>
+        <span id="score" class="stat-value">0</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Coconuts Smashed</span>
+        <span id="smashed-count" class="stat-value">0</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Time Left</span>
+        <span id="timer" class="stat-value timer-text">30s</span>
+      </div>
+    </section>
+
+    <!-- Health Bar -->
+    <div class="health-container">
+      <div class="health-label-wrap">
+        <span>Coconut Hardness</span>
+        <span id="hp-text">10 / 10</span>
+      </div>
+      <div class="health-bar-track">
+        <div id="health-bar-fill" class="health-bar-fill" style="width: 100%;"></div>
+      </div>
+    </div>
+
+    <!-- Arena / Target Area -->
+    <div class="target-arena" id="arena">
+      <!-- Animated Hammer / Hand tool cursor effect -->
+      <div id="hammer" class="hammer">🔨</div>
+
+      <!-- Coconut Container -->
+      <div id="coconut-wrap" class="coconut-wrapper">
+        <div id="coconut" class="coconut stage-0" role="button" aria-label="Coconut target">
+          <!-- Coconut visual constructed with CSS + SVG details -->
+          <div class="coconut-shell">
+            <div class="coconut-hairs"></div>
+            <div class="coconut-dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <!-- Crack overlay layers -->
+            <svg class="crack-svg" viewBox="0 0 100 100">
+              <path class="crack-line crack-1" d="M 50,15 L 47,35 L 53,45 L 48,60" />
+              <path class="crack-line crack-2" d="M 47,35 L 30,42 L 25,55" />
+              <path class="crack-line crack-3" d="M 53,45 L 68,52 L 75,70" />
+              <path class="crack-line crack-4" d="M 48,60 L 52,78 L 49,90" />
+            </svg>
+            <div class="inner-coconut">
+              <div class="coconut-water-drop"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Splash / Combo message overlay -->
+      <div id="combo-badge" class="combo-badge">COMBO x2!</div>
+    </div>
+
+    <!-- Controls -->
+    <footer class="game-controls">
+      <button id="start-btn" class="btn btn-primary">Start Game 🚀</button>
+      <button id="reset-btn" class="btn btn-secondary">Reset 🔄</button>
+      <button id="sound-btn" class="btn btn-icon" title="Toggle Sound">🔊</button>
+    </footer>
+  </main>
+
+  <!-- Game Over Modal -->
+  <div id="game-over-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-trophy">🏆</div>
+      <h2>Time's Up!</h2>
+      <p class="summary-text">You crushed it on the island!</p>
+      <div class="modal-stats">
+        <div class="modal-stat-item">
+          <span>Final Score</span>
+          <strong id="final-score">0</strong>
+        </div>
+        <div class="modal-stat-item">
+          <span>Broken Coconuts</span>
+          <strong id="final-smashed">0</strong>
+        </div>
+        <div class="modal-stat-item">
+          <span>Best Streak</span>
+          <strong id="final-streak">0</strong>
+        </div>
+      </div>
+      <button id="play-again-btn" class="btn btn-primary btn-large">Play Again 🌴</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
